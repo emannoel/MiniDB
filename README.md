@@ -4,14 +4,14 @@ Um SGBD (Sistema Gerenciador de Banco de Dados) simplificado, desenvolvido para 
 
 ---
 
-## 🛠️ Tecnologias e Decisões de Projeto
+## Tecnologias e Decisões de Projeto
 
 * **Linguagem:** Python 3
 * **Interface:** Entrada e saída padrão, interpretando um subconjunto de comandos SQL.
 
 ---
 
-## 🏗️ Arquitetura dos Módulos
+## Arquitetura dos Módulos
 
 O desenvolvimento do `minidb` é dividido em 7 módulos incrementais:
 
@@ -25,7 +25,7 @@ O desenvolvimento do `minidb` é dividido em 7 módulos incrementais:
 
 ---
 
-## 💻 Como Executar
+## Como Executar
 
 O `minidb` recebe o caminho do arquivo de banco de dados como argumento e lê instruções SQL diretamente da entrada padrão (`stdin`).
 
