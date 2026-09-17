@@ -25,10 +25,6 @@ O desenvolvimento do `minidb` é dividido em 7 módulos incrementais:
 
 ---
 
-## Como Executar
-
-O `minidb` recebe o caminho do arquivo de banco de dados como argumento e lê instruções SQL diretamente da entrada padrão (`stdin`).
-
 ### Discentes
 
 * **João Emannuel Brito** - 202511140004
