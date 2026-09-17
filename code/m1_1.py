@@ -64,3 +64,14 @@ class Pager:
     def sync(self) -> None:
         self.f.flush()
         os.fsync(self.f.fileno())
+
+if __name__ == "__main__":
+    arquivo = "teste.db"
+    pager = Pager(arquivo)
+
+    pager.aloca()
+    pager.aloca()
+    pager.aloca()
+    pager.escreve(2, b"C" * 4096)
+    pager.sync()
+    pager.le(2)
