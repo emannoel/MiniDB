@@ -19,11 +19,9 @@ class Pager:
         self.n_paginas = tamanho_total // self.TAM_PAGINA
 
     def deslocamento_pagina(self, n: int) -> int:
-        """Offset onde a PÁGINA começa no arquivo."""
         return n * self.TAM_PAGINA
 
     def deslocamento_slot(self, pagina: int, slot: int) -> int:
-        """Offset onde um REGISTRO específico começa no arquivo."""
         return (pagina * self.TAM_PAGINA) + self.TAM_CABECALHO + (slot * self.TAM_REGISTRO)
 
     def _valida(self, n: int) -> None:
