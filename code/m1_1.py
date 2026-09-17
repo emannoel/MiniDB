@@ -2,6 +2,8 @@ import os
 
 class Pager:
     TAM_PAGINA = 4096
+    TAM_CABECALHO = 16
+    TAM_REGISTRO = 8
 
     def __init__(self, caminho: str):
         self.caminho = caminho
@@ -16,6 +18,14 @@ class Pager:
             )
         self.n_paginas = tamanho_total // self.TAM_PAGINA
 
+    def deslocamento_pagina(self, n: int) -> int:
+        """Offset onde a PÁGINA começa no arquivo."""
+        return n * self.TAM_PAGINA
+
+    def deslocamento_slot(self, pagina: int, slot: int) -> int:
+        """Offset onde um REGISTRO específico começa no arquivo."""
+        return (pagina * self.TAM_PAGINA) + self.TAM_CABECALHO + (slot * self.TAM_REGISTRO)
+
     def _valida(self, n: int) -> None:
         if n < 0 or n >= self.n_paginas:
             raise IndexError(
@@ -24,7 +34,7 @@ class Pager:
 
     def le(self, n: int) -> bytearray:
         self._valida(n)
-        offset = n * self.TAM_PAGINA
+        offset = self.deslocamento_pagina(n)
         self.f.seek(offset)
         buf = self.f.read(self.TAM_PAGINA)
 
@@ -41,13 +51,13 @@ class Pager:
                 f"recebido {len(buf)} bytes."
             )
 
-        offset = n * self.TAM_PAGINA
+        offset = self.deslocamento_pagina(n)
         self.f.seek(offset)
         self.f.write(buf)
 
     def aloca(self) -> int:
         n = self.n_paginas
-        offset = n * self.TAM_PAGINA
+        offset = self.deslocamento_pagina(n)
         self.f.seek(offset)
         self.f.write(bytes(self.TAM_PAGINA))
         self.n_paginas += 1
