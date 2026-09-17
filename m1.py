@@ -1,5 +1,9 @@
 import os
 
+TAM_PAGINA = 4096
+TAM_CABECALHO = 16
+TAM_REGISTRO = 8
+
 def le_pagina(f, n: int) -> bytes:
     f.seek(n * TAM_PAGINA)
     buf = f.read(TAM_PAGINA)
